@@ -16,6 +16,6 @@ public class App {
         ArrangePiecesService arrangePieces = new ArrangePiecesService();
         arrangePieces.separatePiece();
         arrangePieces.getPossibleFirstRowPieces();
-        arrangePieces.addRestOfPieces();
+        arrangePieces.arrange();
     }
 }
