@@ -1,13 +1,10 @@
 package com.puzzlesolver.services;
 
-import java.io.File;//Import the file class
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner; // Import the Scanner class to read text files
-
-import com.puzzlesolver.exception.InvalidInputException;
+import java.util.Scanner;
 
 public class FileRead {
     public static ArrayList<String> piecesDataList = new ArrayList<String>();

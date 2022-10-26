@@ -14,6 +14,12 @@ public class ArrangePiecesService {
     private int noOfRows;
     List<SinglePiece> possibleFirstRowPieces = new ArrayList<>();
 
+    /**
+     * 
+     * @param inputDataAsList
+     * @return
+     * @throws InvalidInputException
+     */
     public List<SinglePiece> buildSinglePiece(List<String> inputDataAsList) throws InvalidInputException {
         List<SinglePiece> allPiecesObjList = new ArrayList<>();
         inputDataAsList.stream().forEach((pieceData) -> {
@@ -24,6 +30,10 @@ public class ArrangePiecesService {
         return allPiecesObjList;
     }
 
+    /**
+     * 
+     * @param singlePieceList
+     */
     public void findPossibleSolutions(List<SinglePiece> singlePieceList) {
         List<List<SinglePiece>> permutationList = pa.permute(singlePieceList);
         permutationList.stream().forEach(eachList -> {
@@ -35,7 +45,8 @@ public class ArrangePiecesService {
     }
 
     /**
-     * Get all possible first row pieces
+     * 
+     * @param permutationResultList
      */
     public void getPossibleFirstRowPieces(List<SinglePiece> permutationResultList) {
         permutationResultList.stream().forEach(p -> {
@@ -47,6 +58,11 @@ public class ArrangePiecesService {
         noOfRows = permutationResultList.size() / noOfColumns;
     }
 
+    /**
+     * 
+     * @param permutationResultList
+     * @return
+     */
     public boolean arrange(List<SinglePiece> permutationResultList) {
         getPossibleFirstRowPieces(permutationResultList);
         try {
@@ -59,7 +75,6 @@ public class ArrangePiecesService {
                     // Arrange first row pieces
                     if (i == 0 && j == 0) {
                         val[i][j] = firstPiece;
-                        System.out.println("foundPiece :: **** " + val[i][j] + " i :: " + i + " j :: " + j);
                         permutationResultList.remove(val[i][j]);
                         continue;
                     } else if (i == 0 && j > 0) {
@@ -67,7 +82,6 @@ public class ArrangePiecesService {
                         String expectedTop = expectedShape(val[i][j - 1].getTop());
                         String expectedLeft = expectedShape(val[i][j - 1].getRight());
                         val[i][j] = getNextPiece(permutationResultList, expectedTop, expectedLeft);
-                        System.out.println("foundPiece :: **** " + val[i][j] + " i :: " + i + " j :: " + j);
                         permutationResultList.remove(val[i][j]);
                         continue;
                     } else if (i < noOfRows - 1) {
@@ -77,7 +91,6 @@ public class ArrangePiecesService {
                                     permutationResultList, expectedShape(val[i - 1][j]
                                             .getBottom()),
                                     "S");
-                            System.out.println("foundPiece ** :: " + val[i][j] + " i :: " + i + " j:: " + j);
                             permutationResultList.remove(val[i][j]);
                             continue;
                         } else {
@@ -87,7 +100,6 @@ public class ArrangePiecesService {
                                     expectedShape(val[i - 1][j].getBottom()),
                                     expectedShape(val[i][j - 1].getRight()));
                             permutationResultList.remove(val[i][j]);
-                            System.out.println("foundPiece ** :: ****" + val[i][j] + " i :: " + i + " j::" + j);
                             continue;
 
                         }
@@ -98,7 +110,6 @@ public class ArrangePiecesService {
                                     permutationResultList, expectedShape(val[i - 1][j].getBottom()),
                                     "S");
                             permutationResultList.remove(val[i][j]);
-                            System.out.println("foundPiece ** :: ****" + val[i][j] + " i :: " + i + " j::" + j);
                             continue;
                         } else {
                             // i = 3 (last row) , j = 1,2,3,4...
@@ -106,7 +117,6 @@ public class ArrangePiecesService {
                                     permutationResultList, expectedShape(val[i - 1][j].getBottom()),
                                     expectedShape(val[i][j - 1].getRight()));
                             permutationResultList.remove(val[i][j]);
-                            System.out.println("foundPiece ** :: ****" + val[i][j] + " i :: " + i + " j::" + j);
                             continue;
                         }
                     }
@@ -123,7 +133,6 @@ public class ArrangePiecesService {
      * @param input
      * @return
      */
-
     private static String expectedShape(String input) {
 
         return input.equals("S") ? "S" : (input.equals("O") ? "I" : "O");
@@ -136,7 +145,6 @@ public class ArrangePiecesService {
      * @param expectedLeftShape
      * @return
      */
-
     private static SinglePiece getNextPiece(List<SinglePiece> permutationResultList, String expectedTopShape,
             String expectedLeftShape) {
         return permutationResultList.stream()

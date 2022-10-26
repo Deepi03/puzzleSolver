@@ -9,6 +9,14 @@ public class SinglePiece {
     public SinglePiece() {
     }
 
+    /**
+     * 
+     * @param top
+     * @param right
+     * @param bottom
+     * @param left
+     */
+
     public SinglePiece(String top, String right, String bottom, String left) {
         this.top = top;
         this.right = right;

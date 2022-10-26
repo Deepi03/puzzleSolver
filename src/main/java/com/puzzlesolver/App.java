@@ -8,10 +8,6 @@ import com.puzzlesolver.services.ArrangePiecesService;
 import com.puzzlesolver.services.FileRead;
 import com.puzzlesolver.services.ValidateService;
 
-/**
- * Hello world!
- *
- */
 public class App {
     public static void main(String[] args) throws InvalidInputException {
         FileRead fileRead = new FileRead();

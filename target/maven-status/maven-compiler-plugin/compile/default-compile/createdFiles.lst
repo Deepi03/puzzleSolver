@@ -1,0 +1,7 @@
+com/puzzlesolver/services/ValidateService.class
+com/puzzlesolver/dto/SinglePiece.class
+com/puzzlesolver/App.class
+com/puzzlesolver/services/PermutateArray.class
+com/puzzlesolver/exception/InvalidInputException.class
+com/puzzlesolver/services/FileRead.class
+com/puzzlesolver/services/ArrangePiecesService.class
