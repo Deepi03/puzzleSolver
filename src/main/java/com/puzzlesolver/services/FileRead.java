@@ -11,11 +11,9 @@ import com.puzzlesolver.exception.InvalidInputException;
 
 public class FileRead {
     public static ArrayList<String> piecesDataList = new ArrayList<String>();
-    List<String> charList = Arrays.asList("S", "I", "O");
+    public int numberOfPieces = 0;
 
-    private int numberOfPieces;
-
-    public void readFile() throws InvalidInputException {
+    public List<String> readFile() {
         try {
             File myObj = new File("puzzle.txt");
             Scanner scanner = new Scanner(myObj);
@@ -27,28 +25,16 @@ public class FileRead {
                     lineNum++;
                     continue;
                 }
-                if (validateData(data)) {
-                    piecesDataList.add(data);
-                } else {
-                    throw new InvalidInputException("Invalid Input");
-                }
+                piecesDataList.add(data);
             }
-            System.out.println(piecesDataList);
+            scanner.close();
+
         } catch (NumberFormatException e) {
             System.out.println("Invalid number ::" + e.getLocalizedMessage());
         } catch (FileNotFoundException e) {
             System.out.println("File not found ::" + e.getLocalizedMessage());
-        } finally {
-            System.out.println("i am finally");
         }
+        return piecesDataList;
     }
 
-    public boolean validateData(String data) throws InvalidInputException {
-
-        return data.length() == 4 && charList.contains(Character.toString(data.charAt(0)))
-                && charList.contains(Character.toString(data.charAt(1)))
-                && charList.contains(Character.toString(data.charAt(2)));
-        /* piecesDataList.add(data); */
-
-    }
 }
