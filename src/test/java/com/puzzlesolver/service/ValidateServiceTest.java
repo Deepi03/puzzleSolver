@@ -1,12 +1,9 @@
 package com.puzzlesolver.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
 import com.puzzlesolver.exception.InvalidInputException;
 import com.puzzlesolver.services.ValidateService;
@@ -24,11 +21,10 @@ public class ValidateServiceTest {
             "OWSI",
             "OSSO");
 
-    @Test
-    public void shouldThrowException() {
-        Assertions.assertThrows(InvalidInputException.class, () -> {
-            validateService.validateData(dataList, 0);
-        });
+    @Test(expected = InvalidInputException.class)
+    public void shouldThrowException() throws InvalidInputException {
+
+        validateService.validateData(dataList, 0);
     }
 
 }

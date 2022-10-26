@@ -23,7 +23,7 @@ public class ValidateService {
                         }
                     } catch (InvalidInputException e) {
                         System.out.println("Invalid input");
-                        System.exit(0);
+                        throw new InvalidInputException("Invalid input");
                     }
                 });
         if (!(dataList.size() == numOfDataLines)) {
